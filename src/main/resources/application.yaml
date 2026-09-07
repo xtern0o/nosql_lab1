@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: nosql_lab1
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${keycloak.auth-server-url}/realms/${keycloak.realm}
+          jwk-set-uri: ${keycloak.internal-auth-server-url}/realms/${keycloak.realm}/protocol/openid-connect/certs
+
+keycloak:
+  auth-server-url: ${KEYCLOAK_SERVER_URL}
+  internal-auth-server-url: ${KEYCLOAK_INTERNAL_URL}
+  realm: ${KEYCLOAK_REALM}
+  client-id: ${KEYCLOAK_CLIENT_ID}
+  client-secret: ${KEYCLOAK_CLIENT_SECRET}
+
+etcd:
+  endpoints: ${ETCD_ENDPOINTS:http://etcd:2379}
