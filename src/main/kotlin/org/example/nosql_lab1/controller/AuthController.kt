@@ -22,7 +22,7 @@ class AuthController(
     }
 
     @PostMapping("/callback")
-    fun exchangeTokenForTokens(
+    fun exchangeCodeForTokens(
         @Valid @RequestBody authCodeRequestDto: AuthCodeRequestDto
     ): TokenResponseDto {
         return keycloakService.exchangeCodeForTokens(authCodeRequestDto)
