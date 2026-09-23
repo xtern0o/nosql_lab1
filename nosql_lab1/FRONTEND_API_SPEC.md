@@ -64,6 +64,10 @@ Event response fields: `id`, `title`, `description`, `event_date`, `location`, `
 
 Lists are Spring Pages with `content`, `total_elements`, `total_pages`, `size`, and `number`.
 
+The standard first page (`page=0`, `size=20`, without `title`) is cached in
+Redis for 2 minutes. The cache is cleared after a committed event update or a
+booking/cancellation that changes available seats. Other requests read from PostgreSQL.
+
 ## Orders
 
 One order belongs to one event. `quantity` is the number of reserved seats.

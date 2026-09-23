@@ -25,6 +25,7 @@ class OrderService(
     private val orderRepository: OrderRepository,
     private val eventRepository: EventRepository,
     private val userRepository: UserRepository,
+    private val eventListCache: EventListCacheService,
 ) {
     @Transactional
     fun create(request: CreateOrderRequest): OrderResponse {
@@ -67,7 +68,9 @@ class OrderService(
             status = OrderStatus.CREATED,
         )
 
-        return orderRepository.save(order).toResponse()
+        val response = orderRepository.save(order).toResponse()
+        eventListCache.invalidateAfterCommit()
+        return response
     }
 
     @Transactional(readOnly = true)
@@ -102,6 +105,7 @@ class OrderService(
 
                     event.reservedSeats = (event.reservedSeats - order.quantity).coerceAtLeast(0)
                     order.status = OrderStatus.CANCELLED
+                    eventListCache.invalidateAfterCommit()
                 }
             }
 

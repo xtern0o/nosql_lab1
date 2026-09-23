@@ -2,12 +2,14 @@ package org.example.nosql_lab1.service
 
 import org.example.nosql_lab1.dto.event.request.EventSearchRequest
 import org.example.nosql_lab1.dto.event.request.UpsertEventRequest
+import org.example.nosql_lab1.dto.event.response.CachedEventPage
 import org.example.nosql_lab1.dto.event.response.EventResponse
 import org.example.nosql_lab1.entity.Event
 import org.example.nosql_lab1.entity.enums.EventStatus
 import org.example.nosql_lab1.repository.EventRepository
 import org.example.nosql_lab1.repository.UserRepository
 import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
@@ -19,6 +21,7 @@ import java.util.UUID
 class EventService(
     private val eventRepository: EventRepository,
     private val userRepository: UserRepository,
+    private val eventListCache: EventListCacheService,
 ) {
     @Transactional(readOnly = true)
     fun getById(id: UUID): EventResponse =
@@ -26,8 +29,16 @@ class EventService(
 
     @Transactional(readOnly = true)
     fun findPublished(request: EventSearchRequest): Page<EventResponse> {
-        val pageable = PageRequest.of(request.page, request.size)
         val title = request.title?.trim().orEmpty()
+        val useCache = request.page == FIRST_PAGE && request.size == FIRST_PAGE_SIZE && title.isBlank()
+
+        if (useCache) {
+            eventListCache.getFirstPage()?.let {
+                return PageImpl(it.content, PageRequest.of(FIRST_PAGE, FIRST_PAGE_SIZE), it.totalElements)
+            }
+        }
+
+        val pageable = PageRequest.of(request.page, request.size)
 
         val events = if (title.isBlank()) {
             eventRepository.findByStatus(EventStatus.PUBLISHED, pageable)
@@ -39,7 +50,15 @@ class EventService(
             )
         }
 
-        return events.map { it.toResponse() }
+        val response = events.map { it.toResponse() }
+
+        if (useCache) {
+            eventListCache.putFirstPage(
+                CachedEventPage(response.content, response.totalElements),
+            )
+        }
+
+        return response
     }
 
     @Transactional
@@ -76,7 +95,9 @@ class EventService(
         event.price = request.price
         request.status?.let { event.status = it }
 
-        return eventRepository.save(event).toResponse()
+        val response = eventRepository.save(event).toResponse()
+        eventListCache.invalidateAfterCommit()
+        return response
     }
 
     private fun findEvent(id: UUID): Event =
@@ -97,4 +118,9 @@ class EventService(
         status = status,
         createdBy = requireNotNull(createdBy),
     )
+
+    private companion object {
+        const val FIRST_PAGE = 0
+        const val FIRST_PAGE_SIZE = 20
+    }
 }
