@@ -1,9 +1,9 @@
 package org.example.nosql_lab1.controller
 
 import jakarta.validation.Valid
-import org.example.nosql_lab1.dto.request.AuthCodeRequestDto
-import org.example.nosql_lab1.dto.request.RefreshRequestDto
-import org.example.nosql_lab1.dto.response.TokenResponseDto
+import org.example.nosql_lab1.dto.auth.request.AuthCodeRequestDto
+import org.example.nosql_lab1.dto.auth.request.RefreshRequestDto
+import org.example.nosql_lab1.dto.auth.response.TokenResponseDto
 import org.example.nosql_lab1.service.KeycloakService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping

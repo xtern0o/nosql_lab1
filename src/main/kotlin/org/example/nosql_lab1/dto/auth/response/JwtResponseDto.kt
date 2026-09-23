@@ -1,4 +1,4 @@
-package org.example.nosql_lab1.dto.response
+package org.example.nosql_lab1.dto.auth.response
 
 import jakarta.validation.constraints.NotNull
 import java.util.UUID

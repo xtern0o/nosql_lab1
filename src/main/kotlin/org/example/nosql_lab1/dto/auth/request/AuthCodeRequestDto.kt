@@ -1,4 +1,4 @@
-package org.example.nosql_lab1.dto.request
+package org.example.nosql_lab1.dto.auth.request
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.NotBlank

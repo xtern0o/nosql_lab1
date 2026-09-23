@@ -1,10 +1,10 @@
 package org.example.nosql_lab1.service
 
 import org.example.nosql_lab1.config.KeycloakProperties
-import org.example.nosql_lab1.dto.request.AuthCodeRequestDto
-import org.example.nosql_lab1.dto.response.KeycloakTokenResponseDto
-import org.example.nosql_lab1.dto.response.TokenResponseDto
-import org.example.nosql_lab1.dto.response.toClientResponse
+import org.example.nosql_lab1.dto.auth.request.AuthCodeRequestDto
+import org.example.nosql_lab1.dto.auth.response.KeycloakTokenResponseDto
+import org.example.nosql_lab1.dto.auth.response.TokenResponseDto
+import org.example.nosql_lab1.dto.auth.response.toClientResponse
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Service
 import org.springframework.util.LinkedMultiValueMap

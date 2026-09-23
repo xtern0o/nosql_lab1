@@ -9,9 +9,12 @@ services:
       KEYCLOAK_REALM: ${KEYCLOAK_REALM}
       KEYCLOAK_CLIENT_ID: ${KEYCLOAK_CLIENT_ID}
       KEYCLOAK_CLIENT_SECRET: ${KEYCLOAK_CLIENT_SECRET}
-      ETCD_ENDPOINTS: ${ETCD_ENDPOINTS:-http://etcd:2379}
+      POSTGRES_URL: ${POSTGRES_URL:-jdbc:postgresql://app-postgres:5432/nosql_lab1}
+      POSTGRES_USER: ${POSTGRES_USER:-nosql_lab1}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nosql_lab1}
     depends_on:
       - keycloak
+      - app-postgres
     ports:
       - "${PORT_BACKEND:-8080}:8080"
 
@@ -43,5 +46,17 @@ services:
     volumes:
       - keycloak_postgres_data:/var/lib/postgresql/data
 
+  app-postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-nosql_lab1}
+      POSTGRES_USER: ${POSTGRES_USER:-nosql_lab1}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nosql_lab1}
+    ports:
+      - "${PORT_APP_DB:-5432}:5432"
+    volumes:
+      - app_postgres_data:/var/lib/postgresql/data
+
 volumes:
   keycloak_postgres_data:
+  app_postgres_data:

@@ -1,6 +1,4 @@
-package org.example.nosql_lab1.dto.response
-
-import com.fasterxml.jackson.annotation.JsonProperty
+package org.example.nosql_lab1.dto.auth.response
 
 /**
  * То, что мы получаем от КК при передаче Authorization Code
