@@ -1,7 +1,7 @@
 services:
   backend:
     build:
-      context: .
+      context: ./nosql_lab1
       dockerfile: Dockerfile
     environment:
       KEYCLOAK_SERVER_URL: ${KEYCLOAK_SERVER_URL}
