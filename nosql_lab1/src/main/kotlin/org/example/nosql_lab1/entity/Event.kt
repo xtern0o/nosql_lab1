@@ -17,39 +17,39 @@ import java.util.UUID
 @Entity
 @Table(name = "events")
 class Event(
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false, updatable = false)
+    @field:Id
+    @field:GeneratedValue(strategy = GenerationType.UUID)
+    @field:Column(nullable = false, updatable = false)
     var id: UUID? = null,
 
-    @Column(nullable = false, length = 255)
+    @field:Column(nullable = false, length = 255)
     var title: String = "",
 
-    @Column(nullable = false, columnDefinition = "text")
+    @field:Column(nullable = false, columnDefinition = "text")
     var description: String = "",
 
-    @Column(name = "event_date", nullable = false)
+    @field:Column(name = "event_date", nullable = false)
     var eventDate: Instant = Instant.EPOCH,
 
-    @Column(nullable = false, length = 255)
+    @field:Column(nullable = false, length = 255)
     var location: String = "",
 
-    @Column(nullable = false)
+    @field:Column(nullable = false)
     var capacity: Int = 0,
 
-    @Column(name = "reserved_seats", nullable = false)
+    @field:Column(name = "reserved_seats", nullable = false)
     var reservedSeats: Int = 0,
 
-    @Column(nullable = false, precision = 12, scale = 2)
+    @field:Column(nullable = false, precision = 12, scale = 2)
     var price: BigDecimal = BigDecimal.ZERO,
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 32)
+    @field:Enumerated(EnumType.STRING)
+    @field:Column(nullable = false, length = 32)
     var status: EventStatus = EventStatus.DRAFTED,
 
-    @Column(name = "created_by", nullable = false, updatable = false)
+    @field:Column(name = "created_by", nullable = false, updatable = false)
     var createdBy: UUID? = null,
 
-    @Version
+    @field:Version
     var version: Long? = null,
 )

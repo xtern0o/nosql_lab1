@@ -9,16 +9,16 @@ import java.util.UUID
 @Entity
 @Table(name = "user_settings")
 class UserSettings(
-    @Id
-    @Column(name = "user_id", nullable = false, updatable = false)
+    @field:Id
+    @field:Column(name = "user_id", nullable = false, updatable = false)
     var userId: UUID? = null,
 
-    @Column(name = "notifications_active", nullable = false)
+    @field:Column(name = "notifications_active", nullable = false)
     var notificationsActive: Boolean = true,
 
-    @Column(nullable = false, length = 16)
+    @field:Column(nullable = false, length = 16)
     var language: String = "en",
 
-    @Column(name = "preferred_category", length = 100)
+    @field:Column(name = "preferred_category", length = 100)
     var preferredCategory: String? = null,
 )

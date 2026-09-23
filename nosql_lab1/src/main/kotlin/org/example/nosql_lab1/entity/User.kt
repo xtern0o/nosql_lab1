@@ -14,18 +14,18 @@ import java.util.UUID
 @Entity
 @Table(name = "users")
 class User(
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false, updatable = false)
+    @field:Id
+    @field:GeneratedValue(strategy = GenerationType.UUID)
+    @field:Column(nullable = false, updatable = false)
     var id: UUID? = null,
 
-    @Column(nullable = false, length = 255)
+    @field:Column(nullable = false, length = 255)
     var name: String = "",
 
-    @Column(nullable = false, unique = true, length = 320)
+    @field:Column(nullable = false, unique = true, length = 320)
     var email: String = "",
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 32)
+    @field:Enumerated(EnumType.STRING)
+    @field:Column(nullable = false, length = 32)
     var role: UserRole = UserRole.USER,
 )

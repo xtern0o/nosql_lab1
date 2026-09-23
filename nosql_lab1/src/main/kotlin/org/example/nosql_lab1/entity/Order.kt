@@ -16,27 +16,27 @@ import java.util.UUID
 @Entity
 @Table(name = "orders")
 class Order(
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false, updatable = false)
+    @field:Id
+    @field:GeneratedValue(strategy = GenerationType.UUID)
+    @field:Column(nullable = false, updatable = false)
     var id: UUID? = null,
 
-    @Column(name = "user_id", nullable = false, updatable = false)
+    @field:Column(name = "user_id", nullable = false, updatable = false)
     var userId: UUID? = null,
 
-    @Column(name = "event_id", nullable = false, updatable = false)
+    @field:Column(name = "event_id", nullable = false, updatable = false)
     var eventId: UUID? = null,
 
-    @Column(nullable = false)
+    @field:Column(nullable = false)
     var quantity: Int = 0,
 
-    @Column(name = "total_price", nullable = false, precision = 12, scale = 2)
+    @field:Column(name = "total_price", nullable = false, precision = 12, scale = 2)
     var totalPrice: BigDecimal = BigDecimal.ZERO,
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @field:Column(name = "created_at", nullable = false, updatable = false)
     var createdAt: Instant = Instant.EPOCH,
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 32)
+    @field:Enumerated(EnumType.STRING)
+    @field:Column(nullable = false, length = 32)
     var status: OrderStatus = OrderStatus.CREATED,
 )
