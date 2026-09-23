@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import jakarta.persistence.Version
 import org.example.nosql_lab1.entity.enums.EventStatus
 import java.math.BigDecimal
 import java.time.Instant
@@ -36,6 +37,9 @@ class Event(
     @Column(nullable = false)
     var capacity: Int = 0,
 
+    @Column(name = "reserved_seats", nullable = false)
+    var reservedSeats: Int = 0,
+
     @Column(nullable = false, precision = 12, scale = 2)
     var price: BigDecimal = BigDecimal.ZERO,
 
@@ -45,4 +49,7 @@ class Event(
 
     @Column(name = "created_by", nullable = false, updatable = false)
     var createdBy: UUID? = null,
+
+    @Version
+    var version: Long? = null,
 )

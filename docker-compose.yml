@@ -12,6 +12,10 @@ services:
       POSTGRES_URL: ${POSTGRES_URL:-jdbc:postgresql://app-postgres:5432/nosql_lab1}
       POSTGRES_USER: ${POSTGRES_USER:-nosql_lab1}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nosql_lab1}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      REDIS_DATABASE: 0
     depends_on:
       - keycloak
       - app-postgres
@@ -57,6 +61,17 @@ services:
     volumes:
       - app_postgres_data:/var/lib/postgresql/data
 
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    ports:
+      - "${PORT_REDIS:-6379}:6379"
+    volumes:
+      - redis_data:/data
+
 volumes:
   keycloak_postgres_data:
   app_postgres_data:
+  redis_data:
