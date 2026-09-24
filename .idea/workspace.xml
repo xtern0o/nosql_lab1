@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d99cd1d-ff77-42fa-bcad-9d0b30b8f2a2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/nosql_lab1/FRONTEND_API_SPEC.md" beforeDir="false" afterPath="$PROJECT_DIR$/nosql_lab1/FRONTEND_API_SPEC.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nosql_lab1/src/main/kotlin/org/example/nosql_lab1/dto/event/request/EventSearchRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/nosql_lab1/src/main/kotlin/org/example/nosql_lab1/dto/event/request/EventSearchRequest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nosql_lab1/src/main/kotlin/org/example/nosql_lab1/service/EventService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/nosql_lab1/src/main/kotlin/org/example/nosql_lab1/service/EventService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nosql_lab1/src/main/kotlin/org/example/nosql_lab1/service/OrderService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/nosql_lab1/src/main/kotlin/org/example/nosql_lab1/service/OrderService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,9 +68,22 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/maxkarn/Desktop/labs/nosql/nosql-lab1/nosql_lab1/nosql_lab1/settings.gradle.kts"
+    "last_opened_file_path": "/home/maxkarn/Desktop/labs/nosql/nosql-lab1/nosql_lab1/nosql_lab1"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="nosql_lab1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="nosql_lab1" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
